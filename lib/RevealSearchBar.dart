@@ -30,9 +30,20 @@ class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.duration = const Duration(milliseconds: 300),
   }) : super(key: key);
 
+  /// callback for when closing
   final VoidCallback onCancelSearch;
+
+  /// search Seach icon container overide
   final Widget searchIconContainer;
+
+  /// text controller -- required
   final TextEditingController searchController;
+
+  /// reveal color -- defaults to `theme.of(context).accentColor`
+  final Color revealColor;
+
+  /// duration for transition -- defaults to `Duration(milliseconds: 300)`
+  final Duration duration;
 
   final Widget title;
   final Widget leading;
@@ -52,8 +63,6 @@ class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double titleSpacing;
   final double toolbarOpacity;
   final double bottomOpacity;
-  final Color revealColor;
-  final Duration duration;
   @override
   Size get preferredSize => Size.fromHeight(56.0);
 

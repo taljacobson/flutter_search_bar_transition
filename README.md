@@ -1,5 +1,8 @@
-# RevealSearchBar
+# reveal_search_bar 
 simple appbar transition to appbar with textField
+
+![Flutter Web](https://github.com/taljacobson/flutter_search_bar_transition/workflows/Flutter%20Web/badge.svg)
+[![pub package](https://img.shields.io/pub/v/reveal_search_bar.svg)](https://pub.dartlang.org/packages/reveal_search_bar)
 
 example https://taljacobson.github.io/flutter_search_bar_transition/#/
 

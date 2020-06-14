@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:RevealSearchBar/RevealSearchBar.dart';
+import 'package:reveal_search_bar/RevealSearchBar.dart';
 
 void main() {
   runApp(MyApp());

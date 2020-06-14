@@ -1,8 +1,8 @@
-name: RevealSearchBar
-description: A new Flutter package project.
-version: 0.0.1
-author:
-homepage:
+name: reveal_search_bar
+description: simple appbar transition to appbar with textField.
+version: 0.1.0
+homepage: https://taljacobson.github.io/flutter_search_bar_transition/#/
+repository: https://github.com/taljacobson/flutter_search_bar_transition
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

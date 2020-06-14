@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:RevealSearchBar/my_painter.dart';
-import 'package:RevealSearchBar/search_bar.dart';
+import 'package:reveal_search_bar/my_painter.dart';
+import 'package:reveal_search_bar/search_bar.dart';
 
 class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   const RevealAppBar({

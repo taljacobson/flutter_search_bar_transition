@@ -123,10 +123,9 @@ class _RevealAppBarState extends State<RevealAppBar>
       GestureDetector(
         child: widget.searchIconContainer ?? searchIconContainer,
         onTapUp: onSearchTapUp,
-      ), ...widget.actions,
-    ]
-      
-      ..toList();
+      ),
+      ...widget.actions,
+    ]..toList();
 
     final appBar = AppBar(
       title: widget.title,
@@ -149,7 +148,7 @@ class _RevealAppBarState extends State<RevealAppBar>
       toolbarOpacity: widget.toolbarOpacity,
     );
 
-    var searchWidget = isInSearchMode
+    final searchWidget = isInSearchMode
         ? SearchBar(
             onCancelSearch: cancelSearch, controller: widget.searchController)
         : Container();

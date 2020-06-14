@@ -95,6 +95,5 @@ void main() {
     );
     expect(find.byIcon(Icons.cloud_upload), findsOneWidget);
     expect(find.text('0'), findsNothing);
-
   });
 }

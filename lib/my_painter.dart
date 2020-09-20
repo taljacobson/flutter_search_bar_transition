@@ -24,8 +24,8 @@ class MyPainter extends CustomPainter {
 
     final width = screenWidth;
     final height = containerHeight + statusBarHeight;
-    final left = isRTL ? -width : 0;
-    final num top = 0;
+    final left = isRTL ? -width : 0.0;
+    final top = 0.0;
 
     canvas.clipRect(
       // Rect.fromLTWH(left, top, width, height)

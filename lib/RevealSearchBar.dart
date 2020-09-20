@@ -172,7 +172,7 @@ class _RevealAppBarState extends State<RevealAppBar>
               willChange: true,
               painter: MyPainter(
                 containerHeight: widget.preferredSize.height,
-                center: Offset(rippleStartX ?? 0, rippleStartY ?? 0),
+                center: Offset(rippleStartX ?? 0.0, rippleStartY ?? 0.0),
                 radius: _animation.value * screenWidth,
                 context: context,
                 color: widget.revealColor ?? Theme.of(context).accentColor,

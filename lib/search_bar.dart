@@ -39,26 +39,9 @@ class _SearchBarState extends State<SearchBar>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: widget.onCancelSearch,
-                  ),
+                  buildIconButton(),
                   Expanded(
-                    child: TextField(
-                      controller: widget.controller,
-                      cursorColor: Colors.white,
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.search, color: Colors.white),
-                        hintText: widget.placeholderText,
-                        hintStyle: TextStyle(color: Colors.white),
-                        suffixIcon: IconButton(
-                          onPressed: clearSearchQuery,
-                          icon: Icon(Icons.close, color: Colors.white),
-                        ),
-                      ),
-                    ),
+                    child: buildTextField(),
                   )
                 ],
               ),
@@ -66,6 +49,31 @@ class _SearchBarState extends State<SearchBar>
           ),
         ),
       ),
+    );
+  }
+
+  TextField buildTextField() {
+    return TextField(
+      controller: widget.controller,
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white, fontSize: 20),
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        prefixIcon: Icon(Icons.search, color: Colors.white),
+        hintText: widget.placeholderText,
+        hintStyle: TextStyle(color: Colors.white),
+        suffixIcon: IconButton(
+          onPressed: clearSearchQuery,
+          icon: Icon(Icons.close, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  IconButton buildIconButton() {
+    return IconButton(
+      icon: Icon(Icons.arrow_back, color: Colors.white),
+      onPressed: widget.onCancelSearch,
     );
   }
 }

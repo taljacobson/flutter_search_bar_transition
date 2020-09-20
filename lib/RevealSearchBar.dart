@@ -169,6 +169,7 @@ class _RevealAppBarState extends State<RevealAppBar>
           animation: _animation,
           builder: (BuildContext context, Widget child) {
             return CustomPaint(
+              willChange: true,
               painter: MyPainter(
                 containerHeight: widget.preferredSize.height,
                 center: Offset(rippleStartX ?? 0, rippleStartY ?? 0),

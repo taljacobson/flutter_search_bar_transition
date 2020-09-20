@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 
 class MyPainter extends CustomPainter {
-  MyPainter(
-      {this.context,
-      this.containerHeight,
-      this.center,
-      this.radius,
-      this.color = Colors.indigo}) {
-    statusBarHeight = MediaQuery.of(context).padding.top;
-    screenWidth = MediaQuery.of(context).size.width;
-  }
+  MyPainter({
+    @required this.context,
+    @required this.containerHeight,
+    @required this.center,
+    @required this.radius,
+    this.color = Colors.indigo,
+  })  : statusBarHeight = MediaQuery.of(context).padding.top,
+        screenWidth = MediaQuery.of(context).size.width,
+        isRTL = Directionality.of(context) == TextDirection.rtl;
 
   final Offset center;
   final double radius, containerHeight;
   final BuildContext context;
 
   final Color color;
-  double statusBarHeight, screenWidth;
-
+  final double statusBarHeight, screenWidth;
+  final bool isRTL;
   @override
   void paint(Canvas canvas, Size size) {
     final circlePainter = Paint()..color = color;
 
+    final width = screenWidth;
+    final height = containerHeight + statusBarHeight;
+    final left = isRTL ? -width : 0;
+    final num top = 0;
+
     canvas.clipRect(
-        Rect.fromLTWH(0, 0, screenWidth, containerHeight + statusBarHeight));
-    canvas.drawCircle(center, radius, circlePainter);
+      // Rect.fromLTWH(left, top, width, height)
+      Rect.fromLTRB(left, top, width, height),
+    );
+
+    canvas.drawCircle(center, radius * 1.5, circlePainter);
   }
 
   @override

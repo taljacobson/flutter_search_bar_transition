@@ -4,10 +4,9 @@ on:
     branches:
       - master
 jobs:
-  build:
-    name: Build Web
-    env:
-      my_secret: ${{secrets.commit_secret}}
+
+  setup: 
+    name: Setup
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -20,21 +19,40 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter test
+  
+  build:
+    name: Build Web
+    env:
+      my_secret: ${{secrets.commit_secret}}
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
       - run: |
           cd example
           flutter build web --release
-      - run: |
-          cd example/build/web
-          # git init
-          # # type configurations: your user.email and user.name followed lines 
-          # git config --global user.email tal1989@gmail.com 
-          # git config --global user.name taljacobson 
-          # git status
-          # # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-          # git remote add origin https://${{secrets.commit_secret}}@github.com/taljacobson/flutter_search_bar_transition.git
-          # git checkout -b gh-pages
-          # git add --all
-          # git commit -m "update"
-          # git push origin gh-pages -f
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+        with:
+          path: build/web/
+      # - run: |
+      #     cd example/build/web
+      #     # git init
+      #     # # type configurations: your user.email and user.name followed lines 
+      #     # git config --global user.email tal1989@gmail.com 
+      #     # git config --global user.name taljacobson 
+      #     # git status
+      #     # # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
+      #     # git remote add origin https://${{secrets.commit_secret}}@github.com/taljacobson/flutter_search_bar_transition.git
+      #     # git checkout -b gh-pages
+      #     # git add --all
+      #     # git commit -m "update"
+      #     # git push origin gh-pages -f
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy GitHub Pages site
         uses: actions/deploy-pages@v4.0.5

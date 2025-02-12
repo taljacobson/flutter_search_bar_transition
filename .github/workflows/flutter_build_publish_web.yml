@@ -46,7 +46,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build/web
+          path: example/build/web
   deploy:
     name: Deploy
     runs-on: ubuntu-latest

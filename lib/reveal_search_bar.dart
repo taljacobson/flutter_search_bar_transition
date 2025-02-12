@@ -3,7 +3,7 @@ import 'package:reveal_search_bar/my_painter.dart';
 import 'package:reveal_search_bar/search_bar.dart' as search_bar;
 
 class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const RevealAppBar({
+  RevealAppBar({
     super.key,
     required this.searchController,
     this.onCancelSearch,

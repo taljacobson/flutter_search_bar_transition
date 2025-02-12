@@ -13,7 +13,7 @@ jobs:
         with:
           channel: stable
       - name: cache flutter
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with: 
            path: |
             ~/.pub-cache
@@ -27,6 +27,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: cache flutter
+        uses: actions/cache@v4
+        with: 
+           path: |
+            ~/.pub-cache
+            ~/.flutter
+           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+           restore-keys: ${{ runner.os }}-flutter-
       - name: Get dependencies
         run: flutter pub get
       - name: Analyze
@@ -42,6 +50,14 @@ jobs:
       run:
         working-directory: ./example
     steps:
+      - name: cache flutter
+        uses: actions/cache@v4
+        with: 
+           path: |
+            ~/.pub-cache
+            ~/.flutter
+           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+           restore-keys: ${{ runner.os }}-flutter-
       - name: Clone repository
         uses: actions/checkout@v4
       - name: Get dependencies

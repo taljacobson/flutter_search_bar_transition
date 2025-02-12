@@ -32,12 +32,12 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-      # work in example directory
       - name: Change directory
         run: cd example
       - name: Get dependencies
-      - run: flutter pub get
-      - run: flutter test
+        run: flutter pub get
+      - name: Test example
+        run: flutter test
       - name: build web
         run: flutter build web --release --base-href /flutter_search_bar_transition/
 

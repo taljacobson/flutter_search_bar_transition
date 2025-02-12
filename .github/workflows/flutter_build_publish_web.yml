@@ -6,8 +6,6 @@ on:
 jobs:
   build:
     name: Build Web
-    env:
-      my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -15,7 +13,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: stable # or: beta, master (or main)
+          channel: stable
       - run: flutter --version
       - run: flutter config --enable-web
       - run: flutter pub get
@@ -25,23 +23,9 @@ jobs:
           flutter build web --release
       - name: Upload static files as artifact
         id: deployment
-        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+        uses: actions/upload-pages-artifact@v3
         with:
           path: example/build/web
-      # - run: |
-      #     cd example/build/web
-      #     # git init
-      #     # # type configurations: your user.email and user.name followed lines 
-      #     # git config --global user.email tal1989@gmail.com 
-      #     # git config --global user.name taljacobson 
-      #     # git status
-      #     # # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-      #     # git remote add origin https://${{secrets.commit_secret}}@github.com/taljacobson/flutter_search_bar_transition.git
-      #     # git checkout -b gh-pages
-      #     # git add --all
-      #     # git commit -m "update"
-      #     # git push origin gh-pages -f
-
   deploy:
     name: Deploy
     runs-on: ubuntu-latest

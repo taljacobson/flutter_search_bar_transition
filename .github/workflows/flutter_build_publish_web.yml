@@ -7,9 +7,6 @@ jobs:
   test: 
     name: Test
     runs-on: ubuntu-latest
-    cache:
-      directories:
-        - $HOME/.pub-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

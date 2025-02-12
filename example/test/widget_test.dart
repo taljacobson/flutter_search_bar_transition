@@ -45,7 +45,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), 'Hello');
     await tester.pumpAndSettle();
-    expect(find.text('Hello'), findsOneWidget);
+    expect(find.text('Hello1'), findsOneWidget);
   });
 
   testWidgets('should open and clear the text field',

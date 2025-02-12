@@ -20,7 +20,7 @@ jobs:
       - run: flutter test
       - run: |
           cd example
-          flutter build web --release
+          flutter build web --release --base-href flutter_search_bar_transition
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3

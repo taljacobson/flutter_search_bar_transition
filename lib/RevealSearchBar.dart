@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:reveal_search_bar/my_painter.dart';
-import 'package:reveal_search_bar/search_bar.dart';
+import 'package:reveal_search_bar/search_bar.dart' as search_bar;
 
 class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   const RevealAppBar({
-    Key key,
-    @required this.searchController,
+    super.key,
+    required this.searchController,
     this.onCancelSearch,
     this.searchIconContainer,
     this.title,
@@ -28,39 +28,39 @@ class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.bottomOpacity = 1.0,
     this.revealColor,
     this.duration = const Duration(milliseconds: 300),
-  }) : super(key: key);
+  });
 
   /// callback for when closing
-  final VoidCallback onCancelSearch;
+  final VoidCallback? onCancelSearch;
 
   /// search Seach icon container overide
-  final Widget searchIconContainer;
+  final Widget? searchIconContainer;
 
   /// text controller -- required
   final TextEditingController searchController;
 
   /// reveal color -- defaults to `theme.of(context).accentColor`
-  final Color revealColor;
+  final Color? revealColor;
 
   /// duration for transition -- defaults to `Duration(milliseconds: 300)`
   final Duration duration;
 
-  final Widget title;
-  final Widget leading;
+  final Widget? title;
+  final Widget? leading;
   final bool automaticallyImplyLeading;
   final List<Widget> actions;
-  final Widget flexibleSpace;
-  final PreferredSizeWidget bottom;
-  final double elevation;
-  final ShapeBorder shape;
-  final Color backgroundColor;
-  final Brightness brightness;
-  final IconThemeData iconTheme;
-  final IconThemeData actionsIconTheme;
-  final TextTheme textTheme;
+  final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
+  final double? elevation;
+  final ShapeBorder? shape;
+  final Color? backgroundColor;
+  final Brightness? brightness;
+  final IconThemeData? iconTheme;
+  final IconThemeData? actionsIconTheme;
+  final TextTheme? textTheme;
   final bool primary;
-  final bool centerTitle;
-  final double titleSpacing;
+  final bool? centerTitle;
+  final double? titleSpacing;
   final double toolbarOpacity;
   final double bottomOpacity;
   @override
@@ -72,9 +72,9 @@ class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _RevealAppBarState extends State<RevealAppBar>
     with SingleTickerProviderStateMixin {
-  double rippleStartX, rippleStartY;
-  AnimationController _controller;
-  Animation<double> _animation;
+  double? rippleStartX, rippleStartY;
+  late AnimationController _controller;
+  late Animation<double> _animation;
   bool isInSearchMode = false;
 
   @override
@@ -107,7 +107,7 @@ class _RevealAppBarState extends State<RevealAppBar>
       isInSearchMode = false;
     });
     if (widget.onCancelSearch != null) {
-      widget.onCancelSearch();
+      widget.onCancelSearch!();
     } else {
       widget.searchController.clear();
     }
@@ -144,7 +144,7 @@ class _RevealAppBarState extends State<RevealAppBar>
       automaticallyImplyLeading: widget.automaticallyImplyLeading,
       bottom: widget.bottom,
       bottomOpacity: widget.bottomOpacity,
-      brightness: widget.brightness,
+      // brightness: widget.brightness,
       centerTitle: widget.centerTitle,
       elevation: widget.elevation,
       flexibleSpace: widget.flexibleSpace,
@@ -152,13 +152,13 @@ class _RevealAppBarState extends State<RevealAppBar>
       leading: widget.leading,
       primary: widget.primary,
       shape: widget.shape,
-      textTheme: widget.textTheme,
+      // textTheme: widget.textTheme,
       titleSpacing: widget.titleSpacing,
       toolbarOpacity: widget.toolbarOpacity,
     );
 
     final searchWidget = isInSearchMode
-        ? SearchBar(
+        ? search_bar.SearchBar(
             onCancelSearch: cancelSearch, controller: widget.searchController)
         : Container();
 
@@ -167,7 +167,7 @@ class _RevealAppBarState extends State<RevealAppBar>
         appBar,
         AnimatedBuilder(
           animation: _animation,
-          builder: (BuildContext context, Widget child) {
+          builder: (BuildContext context, Widget? child) {
             return CustomPaint(
               willChange: true,
               painter: MyPainter(
@@ -175,7 +175,8 @@ class _RevealAppBarState extends State<RevealAppBar>
                 center: Offset(rippleStartX ?? 0.0, rippleStartY ?? 0.0),
                 radius: _animation.value * screenWidth,
                 context: context,
-                color: widget.revealColor ?? Theme.of(context).accentColor,
+                color: widget.revealColor ??
+                    Theme.of(context).colorScheme.secondary,
               ),
             );
           },

@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:example/main.dart';
+import '../lib/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -26,5 +26,37 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('should open and close search bar', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    await tester.tap(find.byIcon(Icons.search));
+    await tester.pumpAndSettle();
+    expect(find.text('Search'), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    expect(find.text('Search'), findsNothing);
+  });
+
+  testWidgets('should open and write in the text field',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    await tester.tap(find.byIcon(Icons.search));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'Hello');
+    await tester.pumpAndSettle();
+    expect(find.text('Hello'), findsOneWidget);
+  });
+
+  testWidgets('should open and clear the text field',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    await tester.tap(find.byIcon(Icons.search));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'Hello');
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.close));
+    await tester.pumpAndSettle();
+    expect(find.text('Hello'), findsNothing);
   });
 }

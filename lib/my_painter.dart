@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class MyPainter extends CustomPainter {
   MyPainter({
-    @required this.context,
-    @required this.containerHeight,
-    @required this.center,
-    @required this.radius,
+    required this.context,
+    required this.containerHeight,
+    required this.center,
+    required this.radius,
     this.color = Colors.indigo,
   })  : statusBarHeight = MediaQuery.of(context).padding.top,
         screenWidth = MediaQuery.of(context).size.width,

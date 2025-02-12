@@ -12,20 +12,19 @@ class MyApp extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Flutter Search Bar Transition Example',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          accentColor: Colors.amber,
-          // visualDensity: VisualDensity.adaptivePlatformDensity,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+              .copyWith(secondary: Colors.amber),
         ),
-        home: MyHomePage(title: 'Flutter Demo Home Page'),
+        home: MyHomePage(title: 'Flutter Search Bar Transition Example'),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -35,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  TextEditingController controller;
+  late TextEditingController controller;
   bool isRTL = false;
 
   @override
@@ -68,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Text(
                 '$_counter',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-              FlatButton(
+              TextButton(
                 child: Text(isRTL ? 'rtl' : 'ltr'),
                 onPressed: () {
                   setState(() {

@@ -8,18 +8,18 @@ jobs:
     name: Setup flutter
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
       - name: cache flutter
         uses: actions/cache@v4
         with: 
            path: |
             ~/.pub-cache
             ~/.flutter
-           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
            restore-keys: ${{ runner.os }}-flutter-
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
   test: 
     name: Test
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
            path: |
             ~/.pub-cache
             ~/.flutter
-           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
            restore-keys: ${{ runner.os }}-flutter-
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -60,7 +60,7 @@ jobs:
            path: |
             ~/.pub-cache
             ~/.flutter
-           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
            restore-keys: ${{ runner.os }}-flutter-
       - name: Clone repository
         uses: actions/checkout@v4

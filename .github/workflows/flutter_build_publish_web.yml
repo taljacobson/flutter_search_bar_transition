@@ -32,8 +32,9 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - name: Change directory
-        run: cd example
+      - name: Change directory to example
+        run: echo "Changing directory to example"
+        working-directory: example
       - name: Get dependencies
         run: flutter pub get
       - name: Test example
@@ -45,7 +46,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: example/build/web
+          path: build/web
   deploy:
     name: Deploy
     runs-on: ubuntu-latest

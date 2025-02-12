@@ -14,10 +14,10 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(56.0);
 
   @override
-  _SearchBarState createState() => _SearchBarState();
+  SearchBarState createState() => SearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar>
+class SearchBarState extends State<SearchBar>
     with SingleTickerProviderStateMixin {
   void clearSearchQuery() {
     widget.controller.clear();
@@ -29,23 +29,21 @@ class _SearchBarState extends State<SearchBar>
       top: true,
       child: Material(
         type: MaterialType.transparency,
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  buildIconButton(),
-                  Expanded(
-                    child: buildTextField(),
-                  )
-                ],
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                buildIconButton(),
+                Expanded(
+                  child: buildTextField(),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

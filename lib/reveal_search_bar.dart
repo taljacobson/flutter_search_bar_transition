@@ -67,10 +67,10 @@ class RevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(56.0);
 
   @override
-  _RevealAppBarState createState() => _RevealAppBarState();
+  RevealAppBarState createState() => RevealAppBarState();
 }
 
-class _RevealAppBarState extends State<RevealAppBar>
+class RevealAppBarState extends State<RevealAppBar>
     with SingleTickerProviderStateMixin {
   double? rippleStartX, rippleStartY;
   late AnimationController _controller;
@@ -118,7 +118,7 @@ class _RevealAppBarState extends State<RevealAppBar>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    var searchIconContainer = Container(
+    var searchIconContainer = SizedBox(
       width: 48,
       height: 48,
       child: Center(
@@ -130,8 +130,8 @@ class _RevealAppBarState extends State<RevealAppBar>
 
     final actions = <Widget>[
       GestureDetector(
-        child: widget.searchIconContainer ?? searchIconContainer,
         onTapUp: onSearchTapUp,
+        child: widget.searchIconContainer ?? searchIconContainer,
       ),
       ...widget.actions,
     ]..toList();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:reveal_search_bar/RevealSearchBar.dart';
+import 'package:reveal_search_bar/reveal_search_bar.dart';
 
 void main() {
   testWidgets('smoke test', (WidgetTester tester) async {

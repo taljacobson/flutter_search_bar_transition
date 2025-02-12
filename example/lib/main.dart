@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:reveal_search_bar/RevealSearchBar.dart';
+import 'package:reveal_search_bar/reveal_search_bar.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -24,15 +26,15 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   late TextEditingController controller;
   bool isRTL = false;

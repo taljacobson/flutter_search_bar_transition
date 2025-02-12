@@ -10,10 +10,13 @@ jobs:
       my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          channel: 'dev'
+          channel: stable # or: beta, master (or main)
+      - run: flutter --version
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter test

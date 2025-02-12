@@ -4,9 +4,30 @@ on:
     branches:
       - master
 jobs:
+  test: 
+    name: Test
+    runs-on: ubuntu-latest
+    cache:
+      directories:
+        - $HOME/.pub-cache
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+  
   build:
     name: Build Web
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -14,13 +35,15 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - run: flutter --version
-      - run: flutter config --enable-web
+      # work in example directory
+      - name: Change directory
+        run: cd example
+      - name: Get dependencies
       - run: flutter pub get
       - run: flutter test
-      - run: |
-          cd example
-          flutter build web --release --base-href /flutter_search_bar_transition/
+      - name: build web
+        run: flutter build web --release --base-href /flutter_search_bar_transition/
+
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3

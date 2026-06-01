@@ -1,6 +1,6 @@
 name: reveal_search_bar
 description: simple appbar transition to appbar with textField.
-version: 0.3.0
+version: 0.3.1
 homepage: https://taljacobson.github.io/flutter_search_bar_transition/#/
 repository: https://github.com/taljacobson/flutter_search_bar_transition
 
@@ -13,7 +13,7 @@ dependencies:
   
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 
